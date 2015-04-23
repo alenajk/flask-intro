@@ -10,7 +10,17 @@ app = Flask(__name__)
 # route to handle the landing page of a website.
 @app.route('/')
 def start_here():
-    return "Hi! This is the home page."
+    # return "Hi! This is the home page."
+    return """
+    <!DOCTYPE html>
+    <html>
+        <head>
+        </head>
+        <body>
+            <a href="/hello">Click here</a>
+        </body>
+    </html>
+    """
 
 # route to display a simple web page
 @app.route('/hello')
@@ -24,6 +34,23 @@ def say_hello():
         <body>
             <h1>Hi There!</h1>
             <form action="/greet">
+            Compliment:
+                <select name="compliment">
+                    <option value="awesome">Awesome</option>
+                    <option value="terrific">Terrific</option>
+                    <option value="fantastic">Awesome</option>
+                    <option value="neato">Neato</option>
+                    <option value="fantabulous">Fantabulous</option>
+                    <option value="wowza">Wowza</option>
+                    <option value="oh-so-not-meh">Oh-so-not-meh</option>
+                    <option value="brilliant">Brilliant</option>
+                    <option value="ducky">Ducky</option>
+                    <option value="coolio">Coolio</option>
+                    <option value="incredible">Incredible</option>
+                    <option value="wonderful">Wonderful</option>
+                    <option value="smashing">Smashing</option>
+                    <option value="lovely">Lovely</option>
+                </select>
                 <label>What's your name? <input type="text" name="person"></label>
                 <input type="submit">
             </form>
@@ -35,12 +62,15 @@ def say_hello():
 @app.route('/greet')
 def greet_person():
     player = request.args.get("person")
+    compliment = request.args.get("compliment")
 
-    AWESOMENESS = [
-        'awesome', 'terrific', 'fantastic', 'neato', 'fantabulous', 'wowza', 'oh-so-not-meh',
-        'brilliant', 'ducky', 'coolio', 'incredible', 'wonderful', 'smashing', 'lovely']
+    #The attribute 'args' is a dictionary. Request is an instance of the request class - that's what Flask does.
 
-    compliment = choice(AWESOMENESS)
+    # AWESOMENESS = [
+    #     'awesome', 'terrific', 'fantastic', 'neato', 'fantabulous', 'wowza', 'oh-so-not-meh',
+    #     'brilliant', 'ducky', 'coolio', 'incredible', 'wonderful', 'smashing', 'lovely']
+
+    # compliment = choice(AWESOMENESS)
 
     return """
     <!DOCTYPE html>
